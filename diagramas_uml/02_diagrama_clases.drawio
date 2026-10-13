@@ -1,0 +1,160 @@
+<mxfile host="draw.io" modified="2026-10-08T16:15:00.000Z" agent="draw.io" type="device" version="24.0.0">
+  <diagram name="Diagrama de Clases (Usuarios y Entidades)" id="CLASS_DIAGRAM">
+    <mxGraphModel dx="1600" dy="900" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+
+        <!-- ==================== TÍTULO ==================== -->
+        <mxCell id="title" value="&lt;b&gt;Diagrama de Clases — Actores, Entidades y Componentes del Sistema&lt;/b&gt;&lt;br&gt;Sistema de Monitoreo Ambiental para Invernadero — Fase 2 (ETL + OLAP)&lt;br&gt;Semillero COTECTRONIX — COTECNOVA" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=13;" vertex="1" parent="1">
+          <mxGeometry x="400" y="10" width="700" height="60" as="geometry"/>
+        </mxCell>
+
+        <!-- ==================== ACTORES (estereotipo «actor») ==================== -->
+        
+        <!-- Investigador / Docente -->
+        <mxCell id="cls_invest" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;«actor»&lt;/b&gt;&lt;br&gt;&lt;b&gt;Investigador / Docente&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin:0px;margin-left:4px;font-size:11px;&quot;&gt;- nombre: String&lt;br&gt;- rol: String = &quot;investigador&quot;&lt;br&gt;- semillero: String&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin:0px;margin-left:4px;font-size:11px;&quot;&gt;+ consultarAnaliticaOLAP()&lt;br&gt;+ analizarAnomalias()&lt;br&gt;+ evaluarNecesidadRiego()&lt;br&gt;+ compararTratamientos()&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;html=1;whiteSpace=wrap;fillColor=#d5e8d4;strokeColor=#82b366;rounded=1;arcSize=8;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="50" y="100" width="260" height="220" as="geometry"/>
+        </mxCell>
+
+        <!-- Administrador de BD -->
+        <mxCell id="cls_admin" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;«actor»&lt;/b&gt;&lt;br&gt;&lt;b&gt;Administrador de BD&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin:0px;margin-left:4px;font-size:11px;&quot;&gt;- nombre: String&lt;br&gt;- rol: String = &quot;admin_bd&quot;&lt;br&gt;- herramientaBI: String&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin:0px;margin-left:4px;font-size:11px;&quot;&gt;+ ejecutarETL()&lt;br&gt;+ importarScriptSQL()&lt;br&gt;+ visualizarEsquemaEstrella()&lt;br&gt;+ verificarIntegridad()&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;html=1;whiteSpace=wrap;fillColor=#fff2cc;strokeColor=#d6b656;rounded=1;arcSize=8;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="50" y="380" width="260" height="220" as="geometry"/>
+        </mxCell>
+
+        <!-- ==================== COMPONENTE ETL ==================== -->
+        <mxCell id="cls_etl" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;«component»&lt;/b&gt;&lt;br&gt;&lt;b&gt;MotorETL (etl_polars.py)&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin:0px;margin-left:4px;font-size:11px;&quot;&gt;- csv_path: Path&lt;br&gt;- sensores_meta: Dict&lt;br&gt;- batch_size_dim: int = 250&lt;br&gt;- batch_size_hechos: int = 500&lt;br&gt;- engine: String = &quot;Polars&quot;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin:0px;margin-left:4px;font-size:11px;&quot;&gt;+ cargarYLimpiar(): DataFrame&lt;br&gt;+ transformarOLAP(): Tuple&lt;br&gt;+ pivotearVertical(): DataFrame&lt;br&gt;+ calcularAnomalias(): DataFrame&lt;br&gt;+ calcularNecesidadRiego(): DataFrame&lt;br&gt;+ exportarSQL(path): void&lt;br&gt;+ main(): void&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;html=1;whiteSpace=wrap;fillColor=#f8cecc;strokeColor=#b85450;rounded=1;arcSize=8;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="430" y="100" width="280" height="300" as="geometry"/>
+        </mxCell>
+
+        <!-- ==================== MODELO DIMENSIONAL (OLAP) ==================== -->
+        
+        <!-- dim_tiempo -->
+        <mxCell id="cls_dim_tiempo" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;«dimension»&lt;/b&gt;&lt;br&gt;&lt;b&gt;dim_tiempo&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin:0px;margin-left:4px;font-size:11px;&quot;&gt;+ id_tiempo: INT «PK»&lt;br&gt;+ fecha_hora: DATETIME&lt;br&gt;+ fecha: DATE&lt;br&gt;+ anio: INT&lt;br&gt;+ mes: INT&lt;br&gt;+ nombre_mes: VARCHAR(20)&lt;br&gt;+ dia: INT&lt;br&gt;+ hora: INT&lt;br&gt;+ franja_horaria: VARCHAR(20)&lt;br&gt;+ dia_semana: VARCHAR(15)&lt;br&gt;+ trimestre: INT&lt;br&gt;+ semana_anio: INT&lt;br&gt;+ es_fin_de_semana: TINYINT&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;html=1;whiteSpace=wrap;fillColor=#dae8fc;strokeColor=#6c8ebf;rounded=1;arcSize=8;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="830" y="80" width="240" height="310" as="geometry"/>
+        </mxCell>
+
+        <!-- dim_sensor -->
+        <mxCell id="cls_dim_sensor" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;«dimension»&lt;/b&gt;&lt;br&gt;&lt;b&gt;dim_sensor&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin:0px;margin-left:4px;font-size:11px;&quot;&gt;+ id_sensor: INT «PK»&lt;br&gt;+ codigo_variable: VARCHAR(30) «UNIQUE»&lt;br&gt;+ nombre_sensor: VARCHAR(50)&lt;br&gt;+ variable_medida: VARCHAR(50)&lt;br&gt;+ ubicacion: VARCHAR(30)&lt;br&gt;+ unidad_medida: VARCHAR(15)&lt;br&gt;+ rango_min_optimo: FLOAT&lt;br&gt;+ rango_max_optimo: FLOAT&lt;br&gt;+ limite_alerta_superior: FLOAT&lt;br&gt;+ limite_alerta_inferior: FLOAT&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;html=1;whiteSpace=wrap;fillColor=#dae8fc;strokeColor=#6c8ebf;rounded=1;arcSize=8;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="1150" y="80" width="280" height="280" as="geometry"/>
+        </mxCell>
+
+        <!-- dim_surco_suelo -->
+        <mxCell id="cls_dim_surco" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;«dimension»&lt;/b&gt;&lt;br&gt;&lt;b&gt;dim_surco_suelo&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin:0px;margin-left:4px;font-size:11px;&quot;&gt;+ id_surco: INT «PK»&lt;br&gt;+ nombre_surco: VARCHAR(50)&lt;br&gt;+ humedad_objetivo_pct: INT&lt;br&gt;+ num_bolsas_almacigo: INT&lt;br&gt;+ cuadriculas: INT&lt;br&gt;+ descripcion_tratamiento: TEXT&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;html=1;whiteSpace=wrap;fillColor=#dae8fc;strokeColor=#6c8ebf;rounded=1;arcSize=8;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="1150" y="420" width="280" height="210" as="geometry"/>
+        </mxCell>
+
+        <!-- fact_mediciones_invernadero (Tabla de Hechos) -->
+        <mxCell id="cls_fact" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;«fact table»&lt;/b&gt;&lt;br&gt;&lt;b&gt;fact_mediciones_invernadero&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin:0px;margin-left:4px;font-size:11px;&quot;&gt;+ id_medicion: INT «PK» AUTO_INC&lt;br&gt;+ id_sensado_origen: INT&lt;br&gt;+ id_tiempo: INT «FK»&lt;br&gt;+ id_sensor: INT «FK»&lt;br&gt;+ id_surco: INT «FK»&lt;br&gt;+ fecha_hora: DATETIME&lt;br&gt;+ valor_medido: FLOAT&lt;br&gt;+ flag_anomalia: TINYINT(1)&lt;br&gt;+ flag_riego: TINYINT(1)&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin:0px;margin-left:4px;font-size:11px;&quot;&gt;&lt;i&gt;31,977 registros&lt;/i&gt;&lt;br&gt;&lt;i&gt;(3,553 capturas × 9 sensores)&lt;/i&gt;&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;html=1;whiteSpace=wrap;fillColor=#ffe6cc;strokeColor=#d79b00;rounded=1;arcSize=8;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="830" y="470" width="260" height="280" as="geometry"/>
+        </mxCell>
+
+        <!-- ==================== FUENTE EXTERNA ==================== -->
+        <mxCell id="cls_csv" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;«dataSource»&lt;/b&gt;&lt;br&gt;&lt;b&gt;Dataset CSV Fase 1&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin:0px;margin-left:4px;font-size:11px;&quot;&gt;- archivo: String&lt;br&gt;- separador: &quot;;&quot;&lt;br&gt;- filas: 3,553&lt;br&gt;- columnas: 11&lt;br&gt;- período: Nov2024 — Abr2026&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;html=1;whiteSpace=wrap;fillColor=#e1d5e7;strokeColor=#9673a6;rounded=1;arcSize=8;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="430" y="510" width="250" height="190" as="geometry"/>
+        </mxCell>
+
+        <!-- Script SQL generado -->
+        <mxCell id="cls_sql" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;«artifact»&lt;/b&gt;&lt;br&gt;&lt;b&gt;invernadero_olap_fase2.sql&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin:0px;margin-left:4px;font-size:11px;&quot;&gt;- formato: SQL (DDL + DML)&lt;br&gt;- tamaño: ~2.4 MB&lt;br&gt;- charset: utf8mb4&lt;br&gt;- motor: InnoDB&lt;br&gt;- compatibilidad: MySQL 8+ / MariaDB 10.4+&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;html=1;whiteSpace=wrap;fillColor=#f5f5f5;strokeColor=#666666;rounded=1;arcSize=8;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="430" y="770" width="280" height="190" as="geometry"/>
+        </mxCell>
+
+        <!-- MySQL / MariaDB -->
+        <mxCell id="cls_mysql" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;«infrastructure»&lt;/b&gt;&lt;br&gt;&lt;b&gt;MySQL 8+ / MariaDB 10.4+&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin:0px;margin-left:4px;font-size:11px;&quot;&gt;- engine: InnoDB&lt;br&gt;- charset: utf8mb4_unicode_ci&lt;br&gt;- entorno: XAMPP / phpMyAdmin&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;html=1;whiteSpace=wrap;fillColor=#f5f5f5;strokeColor=#666666;rounded=1;arcSize=8;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="50" y="720" width="280" height="160" as="geometry"/>
+        </mxCell>
+
+        <!-- ==================== RELACIONES ==================== -->
+
+        <!-- Investigador consulta Fact -->
+        <mxCell id="rel1" style="endArrow=open;endSize=12;dashed=1;html=1;strokeColor=#82b366;" edge="1" source="cls_invest" target="cls_fact" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+          <mxCell value="«consulta»" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=10;" vertex="1" connectable="0" parent="rel1">
+            <mxGeometry x="-0.1" y="0" relative="1" as="geometry"/>
+          </mxCell>
+        </mxCell>
+
+        <!-- Admin ejecuta ETL -->
+        <mxCell id="rel2" style="endArrow=open;endSize=12;dashed=1;html=1;strokeColor=#d6b656;" edge="1" source="cls_admin" target="cls_etl" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+          <mxCell value="«ejecuta»" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=10;" vertex="1" connectable="0" parent="rel2">
+            <mxGeometry x="-0.1" y="0" relative="1" as="geometry"/>
+          </mxCell>
+        </mxCell>
+
+        <!-- Admin importa MySQL -->
+        <mxCell id="rel3" style="endArrow=open;endSize=12;dashed=1;html=1;strokeColor=#d6b656;" edge="1" source="cls_admin" target="cls_mysql" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+          <mxCell value="«importa en»" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=10;" vertex="1" connectable="0" parent="rel3">
+            <mxGeometry x="-0.1" y="0" relative="1" as="geometry"/>
+          </mxCell>
+        </mxCell>
+
+        <!-- ETL lee CSV -->
+        <mxCell id="rel4" style="endArrow=open;endSize=12;html=1;strokeColor=#9673a6;" edge="1" source="cls_etl" target="cls_csv" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+          <mxCell value="«lee»" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=10;" vertex="1" connectable="0" parent="rel4">
+            <mxGeometry x="-0.1" y="0" relative="1" as="geometry"/>
+          </mxCell>
+        </mxCell>
+
+        <!-- ETL genera SQL -->
+        <mxCell id="rel5" style="endArrow=open;endSize=12;html=1;strokeColor=#b85450;" edge="1" source="cls_etl" target="cls_sql" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+          <mxCell value="«genera»" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=10;" vertex="1" connectable="0" parent="rel5">
+            <mxGeometry x="-0.1" y="0" relative="1" as="geometry"/>
+          </mxCell>
+        </mxCell>
+
+        <!-- ETL construye dim_tiempo -->
+        <mxCell id="rel6" style="endArrow=open;endSize=12;html=1;strokeColor=#6c8ebf;" edge="1" source="cls_etl" target="cls_dim_tiempo" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+          <mxCell value="«construye»" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=10;" vertex="1" connectable="0" parent="rel6">
+            <mxGeometry x="-0.1" y="0" relative="1" as="geometry"/>
+          </mxCell>
+        </mxCell>
+
+        <!-- ETL construye dim_sensor -->
+        <mxCell id="rel7" style="endArrow=open;endSize=12;html=1;strokeColor=#6c8ebf;" edge="1" source="cls_etl" target="cls_dim_sensor" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+          <mxCell value="«construye»" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=10;" vertex="1" connectable="0" parent="rel7">
+            <mxGeometry x="-0.1" y="0" relative="1" as="geometry"/>
+          </mxCell>
+        </mxCell>
+
+        <!-- Fact 1:N dim_tiempo -->
+        <mxCell id="fk1" style="endArrow=diamondThin;endFill=1;endSize=12;html=1;strokeColor=#6c8ebf;strokeWidth=2;" edge="1" source="cls_fact" target="cls_dim_tiempo" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+          <mxCell value="id_tiempo (FK)&#xa;N:1" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=10;fontColor=#6c8ebf;" vertex="1" connectable="0" parent="fk1">
+            <mxGeometry x="-0.2" y="0" relative="1" as="geometry"/>
+          </mxCell>
+        </mxCell>
+
+        <!-- Fact 1:N dim_sensor -->
+        <mxCell id="fk2" style="endArrow=diamondThin;endFill=1;endSize=12;html=1;strokeColor=#6c8ebf;strokeWidth=2;" edge="1" source="cls_fact" target="cls_dim_sensor" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+          <mxCell value="id_sensor (FK)&#xa;N:1" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=10;fontColor=#6c8ebf;" vertex="1" connectable="0" parent="fk2">
+            <mxGeometry x="-0.2" y="0" relative="1" as="geometry"/>
+          </mxCell>
+        </mxCell>
+
+        <!-- Fact 1:N dim_surco -->
+        <mxCell id="fk3" style="endArrow=diamondThin;endFill=1;endSize=12;html=1;strokeColor=#6c8ebf;strokeWidth=2;" edge="1" source="cls_fact" target="cls_dim_surco" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+          <mxCell value="id_surco (FK)&#xa;N:1" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=10;fontColor=#6c8ebf;" vertex="1" connectable="0" parent="fk3">
+            <mxGeometry x="-0.2" y="0" relative="1" as="geometry"/>
+          </mxCell>
+        </mxCell>
+
+        <!-- SQL importado en MySQL -->
+        <mxCell id="rel8" style="endArrow=open;endSize=12;dashed=1;html=1;strokeColor=#666666;" edge="1" source="cls_sql" target="cls_mysql" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+          <mxCell value="«importado en»" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=10;" vertex="1" connectable="0" parent="rel8">
+            <mxGeometry x="-0.1" y="0" relative="1" as="geometry"/>
+          </mxCell>
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

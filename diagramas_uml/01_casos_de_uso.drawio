@@ -1,0 +1,94 @@
+<mxfile host="app.diagrams.net" agent="draw.io" version="24.0.0">
+  <diagram id="USE_CASE_DIAGRAM" name="Casos de Uso">
+    <mxGraphModel dx="1600" dy="1100" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        <mxCell id="title" value="&lt;b&gt;Diagrama de Casos de Uso&lt;/b&gt;&lt;br&gt;Sistema de Monitoreo Ambiental para Invernadero — Fase 2 (ETL + OLAP)&lt;br&gt;Semillero COTECTRONIX — COTECNOVA" style="text;html=1;align=center;verticalAlign=middle;resizable=0;strokeColor=none;fillColor=none;fontSize=18;" vertex="1" parent="1">
+          <mxGeometry x="390" y="15" width="820" height="70" as="geometry"/>
+        </mxCell>
+        <mxCell id="system" value="Sistema de Monitoreo Ambiental — Fase 2 (ETL + OLAP)" style="rounded=0;whiteSpace=wrap;html=1;dashed=1;dashPattern=8 8;strokeColor=#666666;fillColor=none;verticalAlign=top;align=left;spacingLeft=12;spacingTop=8;fontStyle=1;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="250" y="105" width="1110" height="900" as="geometry"/>
+        </mxCell>
+        <mxCell id="investigator" value="Investigador / Docente" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;align=center;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=13;" vertex="1" parent="1">
+          <mxGeometry x="65" y="390" width="130" height="110" as="geometry"/>
+        </mxCell>
+        <mxCell id="admin" value="Administrador de BD" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;align=center;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=13;" vertex="1" parent="1">
+          <mxGeometry x="65" y="715" width="130" height="110" as="geometry"/>
+        </mxCell>
+        <mxCell id="etl" value="Script ETL&lt;br&gt;(etl_polars.py)" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;align=center;fillColor=#f8cecc;strokeColor=#b85450;fontSize=13;" vertex="1" parent="1">
+          <mxGeometry x="1400" y="405" width="140" height="110" as="geometry"/>
+        </mxCell>
+        <mxCell id="iot" value="Sistema IoT&lt;br&gt;Fase 1" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;align=center;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=13;" vertex="1" parent="1">
+          <mxGeometry x="1400" y="150" width="140" height="110" as="geometry"/>
+        </mxCell>
+        <mxCell id="cu01" value="&lt;b&gt;CU-01&lt;/b&gt;&lt;br&gt;Extraer Dataset Histórico CSV&lt;br&gt;&lt;font color=&quot;#666666&quot;&gt;RF-01&lt;/font&gt;" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=13;" vertex="1" parent="1">
+          <mxGeometry x="315" y="155" width="245" height="78" as="geometry"/>
+        </mxCell>
+        <mxCell id="cu02" value="&lt;b&gt;CU-02&lt;/b&gt;&lt;br&gt;Validar y Limpiar Datos&lt;br&gt;&lt;font color=&quot;#666666&quot;&gt;RF-02&lt;/font&gt;" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=13;" vertex="1" parent="1">
+          <mxGeometry x="315" y="270" width="245" height="78" as="geometry"/>
+        </mxCell>
+        <mxCell id="cu03" value="&lt;b&gt;CU-03&lt;/b&gt;&lt;br&gt;Transformar Datos&lt;br&gt;(Pivoteo Vertical) — RF-03" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=13;" vertex="1" parent="1">
+          <mxGeometry x="315" y="385" width="245" height="78" as="geometry"/>
+        </mxCell>
+        <mxCell id="cu04" value="&lt;b&gt;CU-04&lt;/b&gt;&lt;br&gt;Construir Dimensiones OLAP&lt;br&gt;&lt;font color=&quot;#666666&quot;&gt;RF-04, RF-05, RF-06&lt;/font&gt;" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=13;" vertex="1" parent="1">
+          <mxGeometry x="315" y="500" width="245" height="78" as="geometry"/>
+        </mxCell>
+        <mxCell id="cu05" value="&lt;b&gt;CU-05&lt;/b&gt;&lt;br&gt;Calcular Indicadores Agronómicos&lt;br&gt;&lt;font color=&quot;#666666&quot;&gt;RF-07, RF-08&lt;/font&gt;" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=13;" vertex="1" parent="1">
+          <mxGeometry x="315" y="615" width="245" height="78" as="geometry"/>
+        </mxCell>
+        <mxCell id="cu06" value="&lt;b&gt;CU-06&lt;/b&gt;&lt;br&gt;Generar Script SQL Portable&lt;br&gt;&lt;font color=&quot;#666666&quot;&gt;RF-11&lt;/font&gt;" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=13;" vertex="1" parent="1">
+          <mxGeometry x="315" y="730" width="245" height="78" as="geometry"/>
+        </mxCell>
+        <mxCell id="cu07" value="&lt;b&gt;CU-07&lt;/b&gt;&lt;br&gt;Importar BD OLAP en MySQL" style="ellipse;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=13;" vertex="1" parent="1">
+          <mxGeometry x="660" y="155" width="245" height="78" as="geometry"/>
+        </mxCell>
+        <mxCell id="cu13" value="&lt;b&gt;CU-13&lt;/b&gt;&lt;br&gt;Visualizar Esquema Estrella en BI&lt;br&gt;&lt;font color=&quot;#666666&quot;&gt;RNF-06&lt;/font&gt;" style="ellipse;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=13;" vertex="1" parent="1">
+          <mxGeometry x="660" y="270" width="245" height="78" as="geometry"/>
+        </mxCell>
+        <mxCell id="cu12" value="&lt;b&gt;CU-12&lt;/b&gt;&lt;br&gt;Ejecutar Proceso ETL Completo&lt;br&gt;&lt;font color=&quot;#666666&quot;&gt;RF-01 a RF-09&lt;/font&gt;" style="ellipse;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=13;" vertex="1" parent="1">
+          <mxGeometry x="660" y="610" width="245" height="78" as="geometry"/>
+        </mxCell>
+        <mxCell id="cu08" value="&lt;b&gt;CU-08&lt;/b&gt;&lt;br&gt;Consultar Analítica Multidimensional&lt;br&gt;&lt;font color=&quot;#666666&quot;&gt;RF-10&lt;/font&gt;" style="ellipse;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=13;" vertex="1" parent="1">
+          <mxGeometry x="1000" y="350" width="260" height="78" as="geometry"/>
+        </mxCell>
+        <mxCell id="cu09" value="&lt;b&gt;CU-09&lt;/b&gt;&lt;br&gt;Analizar Anomalías por Sensor / Período&lt;br&gt;&lt;font color=&quot;#666666&quot;&gt;RF-07&lt;/font&gt;" style="ellipse;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=13;" vertex="1" parent="1">
+          <mxGeometry x="1000" y="485" width="260" height="78" as="geometry"/>
+        </mxCell>
+        <mxCell id="cu10" value="&lt;b&gt;CU-10&lt;/b&gt;&lt;br&gt;Evaluar Necesidad de Riego por Surco&lt;br&gt;&lt;font color=&quot;#666666&quot;&gt;RF-08&lt;/font&gt;" style="ellipse;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=13;" vertex="1" parent="1">
+          <mxGeometry x="1000" y="620" width="260" height="78" as="geometry"/>
+        </mxCell>
+        <mxCell id="cu11" value="&lt;b&gt;CU-11&lt;/b&gt;&lt;br&gt;Comparar Tratamientos Agronómicos&lt;br&gt;&lt;font color=&quot;#666666&quot;&gt;RF-10&lt;/font&gt;" style="ellipse;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=13;" vertex="1" parent="1">
+          <mxGeometry x="1000" y="755" width="260" height="78" as="geometry"/>
+        </mxCell>
+        <mxCell id="legend" value="&lt;b&gt;Relaciones UML:&lt;/b&gt; «include» = comportamiento obligatorio &amp;nbsp; | &amp;nbsp; «extend» = comportamiento opcional / especializado&lt;br&gt;&lt;b&gt;Colores:&lt;/b&gt; verde = investigador &amp;nbsp; | &amp;nbsp; amarillo = administrador &amp;nbsp; | &amp;nbsp; azul = proceso ETL" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#cccccc;fontSize=11;align=left;spacing=8;" vertex="1" parent="1">
+          <mxGeometry x="315" y="875" width="945" height="55" as="geometry"/>
+        </mxCell>
+        <mxCell id="assoc_iot_cu01" style="endArrow=none;html=1;rounded=0;strokeColor=#9673a6;" edge="1" parent="1" source="iot" target="cu01"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="assoc_etl_cu01" style="endArrow=none;html=1;rounded=0;strokeColor=#b85450;" edge="1" parent="1" source="etl" target="cu01"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="assoc_etl_cu02" style="endArrow=none;html=1;rounded=0;strokeColor=#b85450;" edge="1" parent="1" source="etl" target="cu02"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="assoc_etl_cu03" style="endArrow=none;html=1;rounded=0;strokeColor=#b85450;" edge="1" parent="1" source="etl" target="cu03"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="assoc_etl_cu04" style="endArrow=none;html=1;rounded=0;strokeColor=#b85450;" edge="1" parent="1" source="etl" target="cu04"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="assoc_etl_cu05" style="endArrow=none;html=1;rounded=0;strokeColor=#b85450;" edge="1" parent="1" source="etl" target="cu05"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="assoc_etl_cu06" style="endArrow=none;html=1;rounded=0;strokeColor=#b85450;" edge="1" parent="1" source="etl" target="cu06"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="assoc_admin_cu07" style="endArrow=none;html=1;rounded=0;strokeColor=#d6b656;" edge="1" parent="1" source="admin" target="cu07"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="assoc_admin_cu12" style="endArrow=none;html=1;rounded=0;strokeColor=#d6b656;" edge="1" parent="1" source="admin" target="cu12"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="assoc_admin_cu13" style="endArrow=none;html=1;rounded=0;strokeColor=#d6b656;" edge="1" parent="1" source="admin" target="cu13"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="assoc_invest_cu08" style="endArrow=none;html=1;rounded=0;strokeColor=#82b366;" edge="1" parent="1" source="investigator" target="cu08"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="assoc_invest_cu09" style="endArrow=none;html=1;rounded=0;strokeColor=#82b366;" edge="1" parent="1" source="investigator" target="cu09"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="assoc_invest_cu10" style="endArrow=none;html=1;rounded=0;strokeColor=#82b366;" edge="1" parent="1" source="investigator" target="cu10"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="assoc_invest_cu11" style="endArrow=none;html=1;rounded=0;strokeColor=#82b366;" edge="1" parent="1" source="investigator" target="cu11"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="inc12_01" value="«include»" style="dashed=1;dashPattern=6 4;endArrow=open;endFill=0;html=1;rounded=0;fontSize=11;strokeColor=#666666;" edge="1" parent="1" source="cu12" target="cu01"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="inc12_02" value="«include»" style="dashed=1;dashPattern=6 4;endArrow=open;endFill=0;html=1;rounded=0;fontSize=11;strokeColor=#666666;" edge="1" parent="1" source="cu12" target="cu02"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="inc12_03" value="«include»" style="dashed=1;dashPattern=6 4;endArrow=open;endFill=0;html=1;rounded=0;fontSize=11;strokeColor=#666666;" edge="1" parent="1" source="cu12" target="cu03"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="inc12_04" value="«include»" style="dashed=1;dashPattern=6 4;endArrow=open;endFill=0;html=1;rounded=0;fontSize=11;strokeColor=#666666;" edge="1" parent="1" source="cu12" target="cu04"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="inc12_05" value="«include»" style="dashed=1;dashPattern=6 4;endArrow=open;endFill=0;html=1;rounded=0;fontSize=11;strokeColor=#666666;" edge="1" parent="1" source="cu12" target="cu05"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="inc12_06" value="«include»" style="dashed=1;dashPattern=6 4;endArrow=open;endFill=0;html=1;rounded=0;fontSize=11;strokeColor=#666666;" edge="1" parent="1" source="cu12" target="cu06"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="inc08_09" value="«include»" style="dashed=1;dashPattern=6 4;endArrow=open;endFill=0;html=1;rounded=0;fontSize=11;strokeColor=#666666;" edge="1" parent="1" source="cu08" target="cu09"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="inc08_10" value="«include»" style="dashed=1;dashPattern=6 4;endArrow=open;endFill=0;html=1;rounded=0;fontSize=11;strokeColor=#666666;" edge="1" parent="1" source="cu08" target="cu10"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="ext11_08" value="«extend»" style="dashed=1;dashPattern=6 4;endArrow=open;endFill=0;html=1;rounded=0;fontSize=11;strokeColor=#9673a6;" edge="1" parent="1" source="cu11" target="cu08"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="ext13_07" value="«extend»" style="dashed=1;dashPattern=6 4;endArrow=open;endFill=0;html=1;rounded=0;fontSize=11;strokeColor=#9673a6;" edge="1" parent="1" source="cu13" target="cu07"><mxGeometry relative="1" as="geometry"/></mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

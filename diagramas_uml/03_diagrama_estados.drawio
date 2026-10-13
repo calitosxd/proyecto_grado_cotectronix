@@ -1,0 +1,120 @@
+<mxfile host="app.diagrams.net" agent="draw.io">
+  <diagram name="Diagrama de Estados — Proceso ETL" id="STATE_DIAGRAM">
+    <mxGraphModel dx="2441" dy="818" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1500" pageHeight="1000" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="title" parent="1" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=13;" value="&lt;b&gt;Diagrama de Estados — Proceso ETL del Sistema OLAP&lt;/b&gt;&lt;br&gt;Sistema de Monitoreo Ambiental para Invernadero — Fase 2&lt;br&gt;Semillero COTECTRONIX — COTECNOVA" vertex="1">
+          <mxGeometry height="60" width="600" x="400" y="10" as="geometry" />
+        </mxCell>
+        <mxCell id="start" parent="1" style="ellipse;fillColor=#000000;strokeColor=#000000;" value="" vertex="1">
+          <mxGeometry height="30" width="30" x="70" y="120" as="geometry" />
+        </mxCell>
+        <mxCell id="s1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;arcSize=20;shadow=1;fontSize=11;" value="&lt;b&gt;Inactivo&lt;/b&gt;&lt;br&gt;&lt;i&gt;Esperando ejecución&lt;br&gt;del comando ETL&lt;/i&gt;" vertex="1">
+          <mxGeometry height="70" width="180" x="150" y="100" as="geometry" />
+        </mxCell>
+        <mxCell id="s2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;arcSize=20;shadow=1;fontSize=11;" value="&lt;b&gt;Extrayendo CSV&lt;/b&gt;&lt;br&gt;&lt;i&gt;Lectura del dataset histórico&lt;br&gt;(3,553 filas, separador &#39;;&#39;)&lt;/i&gt;" vertex="1">
+          <mxGeometry height="70" width="220" x="420" y="100" as="geometry" />
+        </mxCell>
+        <mxCell id="s3" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;arcSize=20;shadow=1;fontSize=11;" value="&lt;b&gt;Validando Datos&lt;/b&gt;&lt;br&gt;&lt;i&gt;Nulos, tipos, duplicados,&lt;br&gt;parseo de fechas&lt;/i&gt;" vertex="1">
+          <mxGeometry height="70" width="220" x="730" y="100" as="geometry" />
+        </mxCell>
+        <mxCell id="s_error1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;arcSize=20;shadow=1;fontSize=11;" value="&lt;b&gt;Error de Validación&lt;/b&gt;&lt;br&gt;&lt;i&gt;Datos corruptos o faltantes&lt;br&gt;Proceso abortado&lt;/i&gt;" vertex="1">
+          <mxGeometry height="70" width="200" x="1050" y="100" as="geometry" />
+        </mxCell>
+        <mxCell id="s4" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;arcSize=20;shadow=1;fontSize=11;" value="&lt;b&gt;Construyendo Dimensiones&lt;/b&gt;&lt;br&gt;&lt;i&gt;dim_tiempo (3,553 filas)&lt;br&gt;dim_sensor (9 filas)&lt;br&gt;dim_surco_suelo (4 filas)&lt;/i&gt;" vertex="1">
+          <mxGeometry height="90" width="230" x="150" y="280" as="geometry" />
+        </mxCell>
+        <mxCell id="s5" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;arcSize=20;shadow=1;fontSize=11;" value="&lt;b&gt;Pivoteando Mediciones&lt;/b&gt;&lt;br&gt;&lt;i&gt;Unpivot/Melt vertical&lt;br&gt;3,553 × 9 = 31,977 hechos&lt;/i&gt;" vertex="1">
+          <mxGeometry height="90" width="220" x="470" y="280" as="geometry" />
+        </mxCell>
+        <mxCell id="s_error2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;arcSize=20;shadow=1;fontSize=11;" value="&lt;b&gt;Error de Integridad&lt;/b&gt;&lt;br&gt;&lt;i&gt;Conteo de hechos ≠&lt;br&gt;capturas × 9. Abortado.&lt;/i&gt;" vertex="1">
+          <mxGeometry height="70" width="220" x="680" y="420" as="geometry" />
+        </mxCell>
+        <mxCell id="s6" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;arcSize=20;shadow=1;fontSize=11;" value="&lt;b&gt;Calculando Anomalías&lt;/b&gt;&lt;br&gt;&lt;i&gt;flag_anomalia = 1 si valor&lt;br&gt;fuera de rango de alerta&lt;/i&gt;" vertex="1">
+          <mxGeometry height="90" width="220" x="780" y="280" as="geometry" />
+        </mxCell>
+        <mxCell id="s7" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;arcSize=20;shadow=1;fontSize=11;" value="&lt;b&gt;Calculando Necesidad de Riego&lt;/b&gt;&lt;br&gt;&lt;i&gt;flag_riego = 1 si humedad &lt;&lt;br&gt;humedad_objetivo del surco&lt;/i&gt;" vertex="1">
+          <mxGeometry height="90" width="250" x="1080" y="280" as="geometry" />
+        </mxCell>
+        <mxCell id="s8" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;arcSize=20;shadow=1;fontSize=11;" value="&lt;b&gt;Ensamblando Tabla de Hechos&lt;/b&gt;&lt;br&gt;&lt;i&gt;fact_mediciones_invernadero&lt;br&gt;Unión de FK + flags + valor_medido&lt;/i&gt;" vertex="1">
+          <mxGeometry height="80" width="260" x="150" y="500" as="geometry" />
+        </mxCell>
+        <mxCell id="s9" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;arcSize=20;shadow=1;fontSize=11;" value="&lt;b&gt;Generando Script SQL&lt;/b&gt;&lt;br&gt;&lt;i&gt;DDL (CREATE TABLE) +&lt;br&gt;DML (INSERT en lotes 500)&lt;br&gt;~2.4 MB UTF-8&lt;/i&gt;" vertex="1">
+          <mxGeometry height="90" width="230" x="510" y="500" as="geometry" />
+        </mxCell>
+        <mxCell id="s10" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;arcSize=20;shadow=1;fontSize=11;" value="&lt;b&gt;ETL Completado&lt;/b&gt;&lt;br&gt;&lt;i&gt;Script .sql generado exitosamente&lt;br&gt;Listo para importación&lt;/i&gt;" vertex="1">
+          <mxGeometry height="70" width="220" x="840" y="510" as="geometry" />
+        </mxCell>
+        <mxCell id="s11" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;arcSize=20;shadow=1;fontSize=11;" value="&lt;b&gt;BD OLAP Importada&lt;/b&gt;&lt;br&gt;&lt;i&gt;4 tablas con relaciones FK&lt;br&gt;en MySQL/MariaDB&lt;/i&gt;" vertex="1">
+          <mxGeometry height="70" width="200" x="1130" y="510" as="geometry" />
+        </mxCell>
+        <mxCell id="end" parent="1" style="ellipse;fillColor=#000000;strokeColor=#000000;strokeWidth=3;" value="" vertex="1">
+          <mxGeometry height="30" width="30" x="1350" y="530" as="geometry" />
+        </mxCell>
+        <mxCell id="end_outer" parent="1" style="ellipse;fillColor=none;strokeColor=#000000;strokeWidth=2;" value="" vertex="1">
+          <mxGeometry height="40" width="40" x="1345" y="525" as="geometry" />
+        </mxCell>
+        <mxCell id="end_err" parent="1" style="ellipse;fillColor=#FF0000;strokeColor=#FF0000;strokeWidth=3;" value="" vertex="1">
+          <mxGeometry height="30" width="30" x="1280" y="120" as="geometry" />
+        </mxCell>
+        <mxCell id="end_err_outer" parent="1" style="ellipse;fillColor=none;strokeColor=#FF0000;strokeWidth=2;" value="" vertex="1">
+          <mxGeometry height="40" width="40" x="1275" y="115" as="geometry" />
+        </mxCell>
+        <mxCell id="t0" edge="1" parent="1" source="start" style="endArrow=block;endFill=1;html=1;strokeWidth=2;" target="s1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="t1" edge="1" parent="1" source="s1" style="endArrow=block;endFill=1;html=1;strokeWidth=1.5;" target="s2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="t2" edge="1" parent="1" source="s2" style="endArrow=block;endFill=1;html=1;strokeWidth=1.5;" target="s3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="t3e" edge="1" parent="1" source="s3" style="endArrow=block;endFill=1;html=1;strokeWidth=1.5;strokeColor=#b85450;" target="s_error1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="t3f" edge="1" parent="1" source="s_error1" style="endArrow=block;endFill=1;html=1;strokeWidth=1.5;strokeColor=#b85450;" target="end_err">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="t3" edge="1" parent="1" source="s3" style="endArrow=block;endFill=1;html=1;strokeWidth=1.5;" target="s4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="t4" edge="1" parent="1" source="s4" style="endArrow=block;endFill=1;html=1;strokeWidth=1.5;" target="s5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="t5e" edge="1" parent="1" source="s5" style="endArrow=block;endFill=1;html=1;strokeWidth=1.5;strokeColor=#b85450;" target="s_error2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="t5" edge="1" parent="1" source="s5" style="endArrow=block;endFill=1;html=1;strokeWidth=1.5;" target="s6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="t6" edge="1" parent="1" source="s6" style="endArrow=block;endFill=1;html=1;strokeWidth=1.5;" target="s7">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="t7" edge="1" parent="1" source="s7" style="endArrow=block;endFill=1;html=1;strokeWidth=1.5;" target="s8">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="930" y="400" />
+              <mxPoint x="480" y="410" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="t8" edge="1" parent="1" source="s8" style="endArrow=block;endFill=1;html=1;strokeWidth=1.5;" target="s9">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="t9" edge="1" parent="1" source="s9" style="endArrow=block;endFill=1;html=1;strokeWidth=1.5;" target="s10">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="t10" edge="1" parent="1" source="s10" style="endArrow=block;endFill=1;html=1;strokeWidth=1.5;" target="s11">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="t11" edge="1" parent="1" source="s11" style="endArrow=block;endFill=1;html=1;strokeWidth=2;" target="end">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="legend" parent="1" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=#666666;fillColor=#F5F5F5;fontSize=11;rounded=1;arcSize=10;" value="&lt;b&gt;Leyenda:&lt;/b&gt;&lt;br&gt;🔵 Azul = Extracción / Validación&lt;br&gt;🟢 Verde = Transformación exitosa&lt;br&gt;🟡 Amarillo = Cálculo de indicadores&lt;br&gt;🟣 Púrpura = Ensamblaje / Exportación&lt;br&gt;🔴 Rojo = Estados de error (abort)" vertex="1">
+          <mxGeometry height="120" width="300" x="50" y="680" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

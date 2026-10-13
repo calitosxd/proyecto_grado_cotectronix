@@ -1,0 +1,14 @@
+# KiCad generated state, caches, and backups
+**/fp-info-cache*
+**/*.kicad_prl
+**/*-backups/
+**/*.bak
+
+# Database dumps containing personal data
+/documentacion_fase1/Proyecto_Original/Proyecto_Original/BD_DBeaver/Base_Datos_Proyecto.sql
+/documentacion_fase1/Proyecto_Original/Proyecto_Original/BD_DBeaver/respaldo_proyecto.sql
+/documentacion_fase1/Proyecto_Original/Proyecto_Original/www/stem/ASSETS/DOCUMENTACION/dump-Base_Datos_Proyecto-202408131304.sql
+
+# Redundant archives may contain unsanitized copies of the project
+/documentacion_fase1/Proyecto_Original/Proyecto_Original/AA Kidcad/fuente_lm317.zip
+/documentacion_fase1/Proyecto_Original/Proyecto_Original/www/stem/stem.zip
